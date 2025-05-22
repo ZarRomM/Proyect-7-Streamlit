@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# README
+README.md
+
+# License
+LICENSE.txt
+
