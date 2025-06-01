@@ -1,17 +1,35 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-     
-car_data = pd.read_csv('vehicles_us.csv') # leer los datos
-hist_button = st.button('Construir histograma') # crear un botón
-     
-if hist_button: # al hacer clic en el botón
-    # escribir un mensaje
-    st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
-         
-    # crear un histograma
-    fig = px.histogram(car_data, x="odometer")
-     
-    # mostrar un gráfico Plotly interactivo
-    st.plotly_chart(fig, use_container_width=True)
-     
+import seaborn as sn
+from scipy import stats as st
+
+# car_data = df_cd
+df_cd = pd.read_csv('vehicles_us_limpio.csv') # leer los datos
+
+df_cd = pd.read_csv('vehicles_us_limpio.csv')
+
+# Título principal
+st.title('Análisis de Vehículos Usados en EE.UU.')
+
+# Encabezado
+st.header('Distribución de Precios')
+
+# Histograma de precios
+fig, ax = plt.subplots()
+sns.histplot(df_cd['price'], bins=30, kde=False, ax=ax, color='skyblue')
+ax.set_xlabel('Precio')
+ax.set_ylabel('Cantidad de vehículos')
+st.pyplot(fig)
+
+# Gráfico de dispersión: Precio vs Odómetro
+st.header('Precio vs. Odómetro')
+fig2, ax2 = plt.subplots()
+sns.scatterplot(x='odometer', y='price', data=df_cd, ax=ax2, alpha=0.5)
+ax2.set_xlabel('Odómetro (millas)')
+ax2.set_ylabel('Precio')
+st.pyplot(fig2)
+
+# Casilla de verificación para mostrar los datos
+if st.checkbox('Mostrar datos del DataFrame'):
+    st.write(df_cd)
