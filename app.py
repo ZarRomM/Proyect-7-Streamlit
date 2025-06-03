@@ -1,8 +1,9 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import plotly.express as px
 import streamlit as st
-import seaborn as sn
-from scipy import stats as st
+import seaborn as sns
+from scipy import stats
 
 # car_data = df_cd
 df_cd = pd.read_csv('vehicles_us_limpio.csv') # leer los datos
