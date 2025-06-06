@@ -1,4 +1,7 @@
 import pandas as pd
+import pandas_profilin
+from streamlit_pandas_profiling import st_profile_report
+
 import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns
@@ -36,3 +39,8 @@ st.pyplot(fig2)
 # Casilla de verificación para mostrar los datos
 if st.checkbox('Mostrar datos del DataFrame'):
     st.write(df_cd)
+
+
+pr = df_cd.profile_report()
+
+st_profile_report(pr)
