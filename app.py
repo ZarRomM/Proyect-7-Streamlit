@@ -5,10 +5,10 @@ import streamlit as st
 import seaborn as sns
 from scipy import stats
 
+url_data = "https://github.com/ZarRomM/Proyect-7-Streamlit/blob/main/vehicles_us_limpio.csv"
 # car_data = df_cd
-df_cd = pd.read_csv('vehicles_us_limpio.csv') # leer los datos
-
-df_cd = pd.read_csv('vehicles_us_limpio.csv')
+df_cd = pd.read_csv(url_data) # leer los datos
+st.dataframe(df_cd)
 
 # Título principal
 st.title('Análisis de Vehículos Usados en EE.UU.')
