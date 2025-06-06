@@ -11,9 +11,9 @@ st.title('Análisis de Vehículos Usados en EE.UU.')
 url_data = "https://raw.githubusercontent.com/ZarRomM/Proyect-7-Streamlit/main/vehicles_us_limpio_V2.csv"
 df_cd = pd.read_csv(url_data)
 
-# Muestra el DataFrame completo
-st.header('DataFrame US Cars')
-st.dataframe(df_cd)
+# Muestra solo las primeras 5 filas del DataFrame
+st.header('DataFrame US Cars (Primeras 5 filas)')
+st.dataframe(df_cd.head(5))
 
 # Filtramos precios extremos que distorsionan el histograma (outliers)
 df_filtrado = df_cd[(df_cd['price'] >= 1000) & (df_cd['price'] <= 100000)]
