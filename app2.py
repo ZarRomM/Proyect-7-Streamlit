@@ -15,10 +15,6 @@ df_cd = pd.read_csv(url_data)
 st.header('DataFrame US Cars')
 st.dataframe(df_cd)
 
-# Sección: Distribución de precios
-
-
-
 # Filtramos precios extremos que distorsionan el histograma (outliers)
 df_filtrado = df_cd[(df_cd['price'] >= 1000) & (df_cd['price'] <= 100000)]
 
@@ -31,10 +27,6 @@ if mostrar:
     ax.set_xlabel('Precio')
     ax.set_ylabel('Cantidad de vehículos')
     st.pyplot(fig)
-    
-
-# Sección: Relación entre precio y odómetro
-
 
 # Diagrama de dispersión para visualizar cómo varía el precio con el odómetro
 mostrar_2 = st.button('Mostrar Gráfico de Dispersión')
