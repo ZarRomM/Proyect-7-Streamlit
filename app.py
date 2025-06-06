@@ -7,7 +7,7 @@ import seaborn as sns
 st.title('Análisis de Vehículos Usados en EE.UU.')
 
 # Lectura de datos
-url_data = "https://raw.githubusercontent.com/ZarRomM/Proyect-7-Streamlit/main/vehicles_us_limpio.csv"
+url_data = "https://raw.githubusercontent.com/ZarRomM/Proyect-7-Streamlit/main/vehicles_us_limpio_V2.csv"
 df_cd = pd.read_csv(url_data)
 
 # Muestra del DF
@@ -38,8 +38,8 @@ if st.checkbox('Mostrar datos del DataFrame'):
 
 
 st.subheader('Año vs Condición')
-precio_vs_ano = df_cd.groupby('model_year')['condition']
-st.bar_chart(precio_vs_ano)
+precio_vs_condition = df_cd.groupby('model_year')['condition'].mean().reset_index()
+st.bar_chart(precio_vs_condition)
 
 st.subheader('Histograma de Año')
 ax = df_cd['model_year'].hist()
