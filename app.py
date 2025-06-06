@@ -20,7 +20,7 @@ st.header('Distribución de Precios')
 
 # Histograma de precios
 fig, ax = plt.subplots()
-sns.histplot(df_cd['price'], bins=30, kde=False, ax=ax, color='skyblue')
+sns.histplot(df_cd['price'], bins=30, kde=False, ax=ax, color='#0077b6')
 ax.set_xlabel('Precio')
 ax.set_ylabel('Cantidad de vehículos')
 st.pyplot(fig)
@@ -37,7 +37,14 @@ st.pyplot(fig2)
 if st.checkbox('Mostrar datos del DataFrame'):
     st.write(df_cd)
 
-# Reporte de YData Profiling
-pr = ProfileReport(df_cd, title="Reporte YData Profiling")
-html = pr.to_html()
-st.components.v1.html(html, height=1000, scrolling=True)
+
+st.subheader('Año vs Condición')
+precio_vs_ano = df_cd.groupby('model_year')['condition']
+st.bar_chart(precio_vs_ano)
+
+st.subheader('Histograma de Año')
+ax = df_cd['model_year'].hist()
+st.pyplot(ax.figure)
+
+min_year = st.slider('Selecciona que año mínimo quieres buscar', min_value=1.0, max_value=10.0, step=0.5)
+st.dataframe(df_cd.querry('model_year>=@min_year'))
