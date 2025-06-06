@@ -2,13 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns
-from ydata_profiling import ProfileReport
 
 # Título principal
 st.title('Análisis de Vehículos Usados en EE.UU.')
 
 # Lectura de datos
-url_data = "https://raw.githubusercontent.com/ZarRomM/Proyect-7-Streamlit/main/vehicles_us_raw.csv"
+url_data = "https://raw.githubusercontent.com/ZarRomM/Proyect-7-Streamlit/main/vehicles_us_limpio.csv"
 df_cd = pd.read_csv(url_data)
 
 # Muestra del DF
