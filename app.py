@@ -37,8 +37,8 @@ if st.checkbox('Mostrar datos del DataFrame'):
     st.write(df_cd)
 
 
-st.subheader('Año vs Condición')
-precio_vs_condition = df_cd.groupby('model_year')['condition'].mean().reset_index()
+st.subheader('Precio vs Condición')
+precio_vs_condition = df_cd.groupby('model_year')['condition_numeric'].mean().reset_index()
 st.bar_chart(precio_vs_condition)
 
 st.subheader('Histograma de Año')
