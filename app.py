@@ -1,5 +1,5 @@
 import pandas as pd
-import pandas_profilin
+from ydata_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 
 import matplotlib.pyplot as plt
@@ -40,7 +40,6 @@ st.pyplot(fig2)
 if st.checkbox('Mostrar datos del DataFrame'):
     st.write(df_cd)
 
-
-pr = df_cd.profile_report()
-
-st_profile_report(pr)
+pr = ProfileReport(df_cd, title="Reporte YData Profiling")
+html = pr.to_html()
+st.components.v1.html(html, height=1000, scrolling=True)
