@@ -1,9 +1,8 @@
 import pandas as pd
-from ydata_profiling import ProfileReport
 import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns
-
+#from ydata_profiling import ProfileReport
 # Título principal
 st.title('Análisis de Vehículos Usados en EE.UU.')
 
@@ -38,6 +37,6 @@ if st.checkbox('Mostrar datos del DataFrame'):
     st.write(df_cd)
 
 # Reporte de YData Profiling
-pr = ProfileReport(df_cd, title="Reporte YData Profiling")
+"""pr = ProfileReport(df_cd, title="Reporte YData Profiling")
 html = pr.to_html()
-st.components.v1.html(html, height=1000, scrolling=True)
+st.components.v1.html(html, height=1000, scrolling=True)"""
