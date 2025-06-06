@@ -1,7 +1,5 @@
 import pandas as pd
 from ydata_profiling import ProfileReport
-from streamlit_pandas_profiling import st_profile_report
-
 import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns
@@ -11,8 +9,7 @@ st.title('Análisis de Vehículos Usados en EE.UU.')
 
 # Lectura de datos
 url_data = "https://raw.githubusercontent.com/ZarRomM/Proyect-7-Streamlit/main/vehicles_us_raw.csv"
-# car_data = df_cd
-df_cd = pd.read_csv(url_data) # leer los datos
+df_cd = pd.read_csv(url_data)
 
 # Muestra del DF
 st.header('DataFrame US Cars')
@@ -40,6 +37,7 @@ st.pyplot(fig2)
 if st.checkbox('Mostrar datos del DataFrame'):
     st.write(df_cd)
 
+# Reporte de YData Profiling
 pr = ProfileReport(df_cd, title="Reporte YData Profiling")
 html = pr.to_html()
 st.components.v1.html(html, height=1000, scrolling=True)
