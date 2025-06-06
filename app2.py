@@ -16,28 +16,44 @@ st.header('DataFrame US Cars')
 st.dataframe(df_cd)
 
 # Sección: Distribución de precios
-st.header('Distribución de Precios')
+
+
+
+# Filtramos precios extremos que distorsionan el histograma (outliers)
+df_filtrado = df_cd[(df_cd['price'] >= 1000) & (df_cd['price'] <= 100000)]
 
 # Histograma para visualizar la cantidad de vehículos por rango de precio
-fig, ax = plt.subplots()
-sns.histplot(df_cd['price'], bins=30, kde=False, ax=ax, color='#0077b6')
-ax.set_xlabel('Precio')
-ax.set_ylabel('Cantidad de vehículos')
-st.pyplot(fig)
+mostrar = st.button('Mostrar Histograma')
+if mostrar:
+    st.header('Distribución de Precios')
+    fig, ax = plt.subplots()
+    sns.histplot(df_filtrado['price'], bins=30, kde=False, ax=ax, color='#0077b6')
+    ax.set_xlabel('Precio')
+    ax.set_ylabel('Cantidad de vehículos')
+    st.pyplot(fig)
+    
 
 # Sección: Relación entre precio y odómetro
-st.header('Precio vs. Odómetro')
+
 
 # Diagrama de dispersión para visualizar cómo varía el precio con el odómetro
-fig2, ax2 = plt.subplots()
-sns.scatterplot(x='odometer', y='price', data=df_cd, ax=ax2, alpha=0.5)
-ax2.set_xlabel('Odómetro (millas)')
-ax2.set_ylabel('Precio')
-st.pyplot(fig2)
+mostrar_2 = st.button('Mostrar Gráfico de Dispersión')
+if mostrar_2:
+    st.header('Precio vs. Odómetro')
+    fig2, ax2 = plt.subplots()
+    sns.scatterplot(x='odometer', y='price', data=df_cd, ax=ax2, alpha=0.5)
+    ax2.set_xlabel('Odómetro (millas)')
+    ax2.set_ylabel('Precio')
+    st.pyplot(fig2)
 
 # Casilla para mostrar el DataFrame si el usuario lo desea
-if st.checkbox('Mostrar datos del DataFrame'):
-    st.write(df_cd)
+if st.checkbox('Mostrar información del DataFrame'):
+    buffer = df_cd.dtypes.to_frame(name='Tipo de Dato')
+    buffer['Valores No Nulos'] = df_cd.notnull().sum()
+    buffer['Valores Nulos'] = df_cd.isnull().sum()
+    buffer['Únicos'] = df_cd.nunique()
+    st.dataframe(buffer)
+
 
 # Sección: Precio vs Condición Promedio por Año de Modelo
 st.subheader('Precio vs Condición')
